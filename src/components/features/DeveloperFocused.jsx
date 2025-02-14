@@ -46,7 +46,7 @@ export default Home`,
   };
 
   useEffect(() => {
-    setTypedCode(""); // Reset typed code when switching tabs
+    setTypedCode("");
     setCurrentIndex(0);
   }, [activeTab]);
 
@@ -62,18 +62,18 @@ export default Home`,
 
   const getTokenColor = (char, precedingText) => {
     if (precedingText.trim().endsWith("async") || precedingText.trim().endsWith("await")) {
-      return "text-purple-400"; // Purple for async/await
+      return "text-purple-400";
     }
     if (precedingText.trim().endsWith("def")) {
-      return "text-blue-400"; // Blue for function definitions
+      return "text-blue-400";
     }
     if (precedingText.includes("=")) {
-      return "text-green-400"; // Green for assignments
+      return "text-green-400";
     }
     if (char === "(" || char === ")" || char === "," || char === ":") {
-      return "text-gray-400"; // Gray for punctuation
+      return "text-gray-400";
     }
-    return "text-yellow-200"; // Light yellow for other text
+    return "text-yellow-200";
   };
 
   const [activeTab1, setActiveTab1] = useState(0);
@@ -88,17 +88,17 @@ export default Home`,
   }, []);
 
   return (
-    <div className="px-8">
-      <h1 className="flex pt-[100px] font-nineties text-[56px] text-[#FFF] justify-center">
+    <div className="px-4 md:px-8">
+      <h1 className="flex pt-12 md:pt-[100px] font-nineties text-3xl md:text-[56px] text-[#FFF] justify-center text-center">
         Developer Focused
       </h1>
-      <div className=" flex flex-col items-center justify-center p-8">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col items-center justify-center p-4 md:p-8">
+        <div className="flex flex-wrap md:flex-nowrap items-center justify-center gap-2 md:gap-4">
           {tabs1.map((tab, index) => (
             <React.Fragment key={tab}>
               <div className="relative">
                 <div
-                  className={`px-10 py-2 border rounded-full transition-all duration-500 
+                  className={`px-4 md:px-10 py-2 border rounded-full transition-all duration-500 text-sm md:text-base
                   ${
                     activeTab1 === index
                       ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.5)]"
@@ -106,18 +106,15 @@ export default Home`,
                   }`}
                 >
                   <span className="relative z-10 font-nineties">{tab}</span>
-
-                  {/* Glow effect */}
                   {activeTab1 === index && (
                     <div className="absolute inset-0 bg-white rounded-full blur-lg opacity-30 animate-pulse" />
                   )}
                 </div>
               </div>
 
-              {/* Arrows between tabs */}
               {index < tabs.length - 1 && (
                 <svg
-                  className="w-6 h-6 text-gray-600"
+                  className="w-4 h-4 md:w-6 md:h-6 text-gray-600 hidden md:block"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="#FFF"
@@ -135,22 +132,21 @@ export default Home`,
         </div>
       </div>
 
-      <div className="relative px-20 pt-20 aspect-[1376/732] bg-[url('/images/devbg1.png')] bg-cover bg-center rounded-[48px] overflow-hidden">
+      <div className="relative px-4 md:px-20 pt-8 md:pt-20 aspect-[1376/732] bg-[url('/images/devbg1.png')] bg-cover bg-center rounded-2xl md:rounded-[48px] overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto  rounded-xl  border-t border-r border-l border-white bg-gray-950 text-gray-200">
+        <div className="relative z-10 w-full max-w-6xl mx-auto rounded-xl border-t border-r border-l border-white bg-gray-950 text-gray-200">
           <div className="absolute inset-0 -z-10 rounded-[30px] bg-gradient-to-b from-pink-500 to-transparent blur-2xl opacity-50"></div>
 
-          <div className="p-6 bg-black rounded-xl h-[100vh] overflow-scroll">
+          <div className="p-3 md:p-6 bg-black rounded-xl h-[60vh] md:h-[100vh] overflow-scroll">
             <div className="rounded-lg bg-black/50 overflow-hidden">
-              {/* Custom tabs */}
-              <div className="flex bg-black/30 border-b border-gray-800">
+              <div className="flex overflow-x-auto bg-black/30 border-b border-gray-800">
                 {tabs.map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`px-4 py-2 text-sm focus:outline-none transition-colors relative
-              ${activeTab === tab ? "text-white" : "text-gray-500 hover:text-gray-300"}`}
+                    className={`px-2 md:px-4 py-2 text-xs md:text-sm focus:outline-none transition-colors relative whitespace-nowrap
+                    ${activeTab === tab ? "text-white" : "text-gray-500 hover:text-gray-300"}`}
                   >
                     {tab}
                     {activeTab === tab && (
@@ -160,16 +156,16 @@ export default Home`,
                 ))}
               </div>
 
-              <div className="p-6 font-mono text-sm">
+              <div className="p-3 md:p-6 font-mono text-xs md:text-sm">
                 {typedCode.split("\n").map((line, i) => (
                   <div key={i} className="flex">
-                    <span className="w-8 text-gray-600 select-none">{i + 1}</span>
-                    <span className="flex-1">
+                    <span className="w-6 md:w-8 text-gray-600 select-none">{i + 1}</span>
+                    <span className="flex-1 overflow-x-auto">
                       {line.split("").map((char, j) => (
                         <span
                           key={j}
                           className={`${char === " " ? "whitespace-pre" : ""} 
-                    ${getTokenColor(char, line.slice(0, j))}`}
+                          ${getTokenColor(char, line.slice(0, j))}`}
                         >
                           {char}
                         </span>

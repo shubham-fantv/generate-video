@@ -23,53 +23,51 @@ const features = [
 
 const FeatureSection = () => {
   return (
-    <section className="py-[100px] px-8">
+    <section className="py-8 md:py-[100px] px-4 md:px-8">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-white text-[56px] font-nineties text-center mb-8">Our Features</h2>
+        <h2 className="text-white text-3xl md:text-[56px] font-nineties text-center mb-6 md:mb-8">
+          Our Features
+        </h2>
       </div>
 
       {/* Main Container */}
-      <div className="relative bg-[url('/images/featureBg.png')] bg-cover bg-center rounded-2xl py-[75px] px-[100px]  mx-auto shadow-lg">
+      <div className="relative bg-[url('/images/featureBg.png')] bg-cover bg-center rounded-lg md:rounded-2xl py-8 md:py-[75px] px-4 md:px-[100px] mx-auto shadow-lg">
         <div className="absolute inset-0 bg-[url('/path-to-pattern.svg')] opacity-20"></div>
 
         {/* Zigzag Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-10 relative z-10">
+        <div className="grid grid-cols-1 gap-8 md:gap-10 relative z-10">
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`flex items-center space-x-6 ${
+              className={`flex flex-col md:flex-row items-center gap-6 md:space-x-6 ${
                 feature.position === "left" ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
-              <div
-                style={{ width: "40%" }}
-                className="w-[500px] h-[320px] bg-black rounded-[48px] border-[12px] border-[#FFFFFF26]"
-              >
+              {/* Video Container */}
+              <div className="w-full md:w-[40%] h-[240px] md:h-[320px] bg-black rounded-[24px] md:rounded-[48px] border-[6px] md:border-[12px] border-[#FFFFFF26]">
                 <video
-                  className="w-full h-full rounded-[40px] object-cover"
+                  className="w-full h-full rounded-[20px] md:rounded-[40px] object-cover"
                   src={"/video/Crypto.mp4"}
                   poster={"/icons/charecter/image1.png"}
                   muted
+                  playsInline
                   onMouseEnter={(e) => e.target.play()}
                   onMouseLeave={(e) => e.target.pause()}
                   onEnded={(e) => e.target.play()}
                 />
               </div>
-              <div style={{ width: "60%" }}>
-                <h3 className="text-[48px] font-extrabold">{feature.title}</h3>
-                <p className="text-base">{feature.description}</p>
+
+              {/* Text Content */}
+              <div className="w-full md:w-[60%] text-center md:text-left">
+                <h3 className="text-2xl md:text-[48px] font-extrabold mb-3 md:mb-4">
+                  {feature.title}
+                </h3>
+                <p className="text-sm md:text-base">{feature.description}</p>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Show More Button */}
       </div>
-      {/* <div className="text-center mt-6">
-        <button className="px-6 py-2 border border-white text-white rounded-lg hover:bg-white hover:text-black transition">
-          Show More ▼
-        </button>
-      </div> */}
     </section>
   );
 };
