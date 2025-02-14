@@ -55,14 +55,19 @@ const UseCasesGrid = () => {
             AI-Enhanced Podcast Creation
           </h1>
 
-          <div className="w-full max-w-4xl mx-auto mt-20 py-5 relative">
+          <div className="w-full max-w-4xl mx-auto mt-16 py-5 relative">
             <Swiper
               effect="coverflow"
               grabCursor
               centeredSlides
               slidesPerView={2}
               loop
-              autoplay={false}
+              // autoplay={false}
+              autoplay={{
+                delay: 3000, // 3 seconds
+                disableOnInteraction: false, // Keep autoplay working after user interaction
+                pauseOnMouseEnter: true,
+              }}
               coverflowEffect={{
                 rotate: 0,
                 stretch: 50,
