@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import VideoCharacterTabs from "./Section2";
 import { Tabs, Tab, Button } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import AutoFillInput from "../common/AutoFillInput";
+import { throttle } from "lodash";
 
 const videoList = [
   { id: "1", url: "/video/new1.mp4", lyrics: "dgfask dgaks askdf askdfka" },
@@ -105,10 +106,6 @@ const HeaderBanner = () => {
     "Sales Pitch",
   ];
 
-  // const handleTabChange = (event, newValue) => {
-  //   setActiveTab(newValue);
-  // };
-
   const tabs = [
     { id: "video", label: "Video" },
     { id: "character", label: "Character" },
@@ -123,6 +120,20 @@ const HeaderBanner = () => {
     setActiveTab(tabId);
   };
 
+  // Throttled function
+  const handleMouseEnter = useCallback(
+    throttle((index) => {
+      setHoveredIndex(index);
+    }, 500), // Adjust the delay as needed
+    []
+  );
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+  };
+  const swiperRef = useRef(null);
+  const charSwiperRef = useRef(null);
+
   return (
     <div>
       <div className="  relative  p-6  text-white bg-[url('/images/bannerBg.png')] bg-cover bg-center">
@@ -135,19 +146,18 @@ const HeaderBanner = () => {
             <li className="cursor-pointer font-nineties">Resources</li>
             <li className="cursor-pointer font-nineties">Pricing</li>
           </ul>
-          <button className="bg-white text-[#1E1E1E] font-bold px-4 py-2 rounded-md">
+          <button className="bg-white text-[#1E1E1E] font-bold px-4 py-2 rounded-full">
             Launch App
           </button>
         </nav>
 
-        {/* Main Banner Section */}
-        <div className="flex flex-col lg:flex-row items-center justify-between  px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between pb-[150px]  px-8">
           {/* Left Text Content */}
           <div className="w-[50%] text-left">
-            <h1 className="text-[64px] leading-[64px] text-[#1E1E1E]  font-nineties">
+            <h1 className="text-[64px] leading-[64px] text-[#FFF]  font-nineties">
               Transform your stories with living, Breathing AI Characters
             </h1>
-            <p className="mt-6 text-base text-[#1E1E1E]">
+            <p className="mt-6 text-base text-[#FFF]">
               Create unforgettable stories with characters who write themselves. Our revolutionary
               AI technology brings your imagination to life, helping you craft deeper narratives
               with personalities that feel genuinely human.
@@ -165,12 +175,12 @@ const HeaderBanner = () => {
           </div>
 
           {/* Right Side TV Image */}
-          <div className=" w-[50%]">
+          <div className="w-[50%]">
             <img src="/images/tv.png" alt="Retro TV" className="w-[672px] rounded-lg " />
           </div>
         </div>
 
-        <div className="mt-[150px] text-white  p-8">
+        <div className="text-white  p-8">
           <h1 className="text-center  text-[#FFF] text-[56px] font-nineties font-bold">
             From Concept to Creation
           </h1>
@@ -181,30 +191,6 @@ const HeaderBanner = () => {
           </p>
         </div>
       </div>
-      {/* <div className="p-4">
-        <div className=" flex items-center justify-center">
-          <div
-            style={{ border: "1px solid #FFFFFF33" }}
-            className="bg-[#FFFFFF0D] p-2 rounded-full flex gap-1"
-          >
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-8 py-2 rounded-full transition-all duration-300
-              ${
-                activeTab === tab.id
-                  ? "bg-gradient-to-r from-pink-300 to-orange-300  border-4 border-white shadow-[0px 0px 19px 0px #FFFFFFBF] "
-                  : "text-gray-400 hover:text-gray-200"
-              }
-            `}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div> */}
       <div className="p-4">
         <div className="flex items-center justify-center">
           <div
@@ -253,7 +239,7 @@ const HeaderBanner = () => {
         {activeTab === "video" && (
           <div className="mt-6">
             {/* Video Categories */}
-            <div className="flex justify-center gap-3 mb-4 text-base">
+            <div className="flex justify-center gap-3 mb-8 text-base">
               {videoCategories.map((category) => (
                 <Button
                   key={category}
@@ -273,9 +259,12 @@ const HeaderBanner = () => {
             <Swiper
               slidesPerView={3.2}
               spaceBetween={30}
-              navigation
               modules={[Navigation]}
-              // className="mt-4"
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              navigation={{
+                nextEl: ".custom-swiper-button-next",
+                prevEl: ".custom-swiper-button-prev",
+              }}
             >
               {videoList.map((video, index) => (
                 <SwiperSlide
@@ -284,8 +273,8 @@ const HeaderBanner = () => {
                 >
                   <div
                     className="relative"
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
+                    onMouseEnter={() => handleMouseEnter(index)}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <video
                       src={video.url}
@@ -308,6 +297,18 @@ const HeaderBanner = () => {
                   </div>
                 </SwiperSlide>
               ))}
+              <div className="flex justify-between mt-4">
+                <div className="left-shadow">
+                  <button className="custom-swiper-button-prev bg-white absolute top-1/2 left-1 transform -translate-y-1/2 w-12 h-12 flex items-center justify-center text-black rounded-full transition">
+                    <img src="/icons/left-arrow.png" />
+                  </button>
+                </div>
+                <div className="right-shadow">
+                  <button className="custom-swiper-button-next  bg-white absolute top-1/2 right-1 transform -translate-y-1/2 w-12 h-12 flex items-center justify-center  text-black rounded-full transition">
+                    <img src="/icons/right-arrow.png" />
+                  </button>
+                </div>
+              </div>
             </Swiper>
           </div>
         )}
@@ -334,8 +335,12 @@ const HeaderBanner = () => {
             <Swiper
               slidesPerView={3.3}
               spaceBetween={10}
-              navigation
               modules={[Navigation]}
+              onSwiper={(swiper) => (charSwiperRef.current = swiper)}
+              navigation={{
+                nextEl: ".custom-swiper-button-next",
+                prevEl: ".custom-swiper-button-prev",
+              }}
               className="mt-12"
             >
               {charecter[selectedCharacters].items.map((character, index) => (
@@ -347,6 +352,18 @@ const HeaderBanner = () => {
                   />
                 </SwiperSlide>
               ))}
+              <div className="flex justify-between mt-4">
+                <div className="left-shadow">
+                  <button className="custom-swiper-button-prev bg-white absolute top-1/2 left-1 transform -translate-y-1/2 w-12 h-12 flex items-center justify-center text-black rounded-full transition">
+                    <img src="/icons/left-arrow.png" />
+                  </button>
+                </div>
+                <div className="right-shadow">
+                  <button className="custom-swiper-button-next  bg-white absolute top-1/2 right-1 transform -translate-y-1/2 w-12 h-12 flex items-center justify-center  text-black rounded-full transition">
+                    <img src="/icons/right-arrow.png" />
+                  </button>
+                </div>
+              </div>
             </Swiper>
           </div>
         )}

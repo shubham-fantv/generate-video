@@ -89,7 +89,7 @@ export default Home`,
 
   return (
     <div className="px-8">
-      <h1 className="flex pt-[80px] font-nineties text-[56px] text-[#FFF] justify-center">
+      <h1 className="flex pt-[100px] font-nineties text-[56px] text-[#FFF] justify-center">
         Developer Focused
       </h1>
       <div className=" flex flex-col items-center justify-center p-8">
@@ -135,13 +135,13 @@ export default Home`,
         </div>
       </div>
 
-      <div className="relative px-20 pt-20 bg-[url('/images/devbg.png')] bg-cover bg-center rounded-[48px] overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-40 mix-blend-overlay z-0"></div>
+      <div className="relative px-20 pt-20 aspect-[1376/732] bg-[url('/images/devbg1.png')] bg-cover bg-center rounded-[48px] overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
 
         <div className="relative z-10 w-full max-w-6xl mx-auto  rounded-xl  border-t border-r border-l border-white bg-gray-950 text-gray-200">
           <div className="absolute inset-0 -z-10 rounded-[30px] bg-gradient-to-b from-pink-500 to-transparent blur-2xl opacity-50"></div>
 
-          <div className="p-6 bg-black rounded-xl h-[80vh] overflow-scroll">
+          <div className="p-6 bg-black rounded-xl h-[100vh] overflow-scroll">
             <div className="rounded-lg bg-black/50 overflow-hidden">
               {/* Custom tabs */}
               <div className="flex bg-black/30 border-b border-gray-800">

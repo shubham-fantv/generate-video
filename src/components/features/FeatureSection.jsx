@@ -23,9 +23,11 @@ const features = [
 
 const FeatureSection = () => {
   return (
-    <section className="py-20">
+    <section className="py-[100px] px-8">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-white mb-8">Our Features</h2>
+        <h2 className="text-white text-[56px] font-serif font-nineties text-center mb-8">
+          Our Features
+        </h2>
       </div>
 
       {/* Main Container */}
@@ -43,8 +45,18 @@ const FeatureSection = () => {
             >
               <div
                 style={{ width: "40%" }}
-                className="w-[500px] h-[320px] bg-black rounded-xl shadow-lg"
-              ></div>
+                className="w-[500px] h-[320px] bg-black rounded-[48px] border-[12px] border-[#FFFFFF26]"
+              >
+                <video
+                  className="w-full h-full rounded-[40px] object-cover"
+                  src={"/video/Crypto.mp4"}
+                  poster={"/icons/charecter/image1.png"}
+                  muted
+                  onMouseEnter={(e) => e.target.play()}
+                  onMouseLeave={(e) => e.target.pause()}
+                  onEnded={(e) => e.target.play()}
+                />
+              </div>
               <div style={{ width: "60%" }}>
                 <h3 className="text-[48px] font-extrabold">{feature.title}</h3>
                 <p className="text-base">{feature.description}</p>

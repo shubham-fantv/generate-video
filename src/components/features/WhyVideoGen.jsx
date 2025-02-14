@@ -23,15 +23,14 @@ const VideoGenFeatures = () => {
   ];
 
   return (
-    <div className="min-h-screen  pt-[100px] relative overflow-hidden px-[32px]">
-      <div className="max-full mx-auto rounded-[2.5rem] border-[2px]  border-[#FFFFFF33] bg-gradient-to-b from-gray-900 to-gray-950 p-12 relative">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif text-white font-nineties mb-4">Why VideoGen</h2>
+    <div className="min-h-screen  py-[100px] relative overflow-hidden px-[32px]">
+      <div className="max-full mx-auto rounded-[48px] bg-[url('/images/why-bg.png')] bg-cover bg-center p-12 relative before:absolute before:inset-0 before:rounded-[48px] before:bg-gradient-to-b before:from-black/80 before:to-transparent">
+        <div className=" relative text-center mb-16 z-[999]">
+          <h2 className="text-4xl text-white font-nineties mb-4">Why VideoGen</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           </p>
         </div>
-
         {/* Cards container */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
@@ -45,7 +44,7 @@ const VideoGenFeatures = () => {
               />
 
               {/* Card content */}
-              <div className="relative rounded-3xl bg-gray-900 p-8 h-full">
+              <div className="relative border border-white rounded-3xl bg-[#1E1E1E] p-8 h-full">
                 <h3 className="text-4xl font-bold text-white mb-4 font-nineties">
                   {feature.percentage}
                 </h3>
@@ -54,13 +53,6 @@ const VideoGenFeatures = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Background gradient effects */}
-        <div className="absolute top-0 left-0 w-full h-full rounded-[2.5rem] overflow-hidden">
-          <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-blue-500/10 blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-yellow-500/10 blur-[120px]" />
-          <div className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-green-500/10 blur-[120px]" />
         </div>
       </div>
     </div>
