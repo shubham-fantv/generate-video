@@ -285,7 +285,7 @@ const HeaderBanner = () => {
                       onMouseLeave={(e) => e.target.pause()}
                     />
                     {hoveredIndex !== index && (
-                      <div className="backdrop-blur-md absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 text-white rounded-[48px] pointer-events-none">
+                      <div className=" absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 text-white rounded-[48px] pointer-events-none">
                         <img src="/icons/play-circle.png" />
                       </div>
                     )}
