@@ -47,9 +47,7 @@ const UseCasesGrid = () => {
 
   return (
     <div className=" min-h-screen px-8 ">
-      <h2 className="text-white text-[56px] font-serif font-nineties text-center mb-8">
-        Use Cases
-      </h2>
+      <h2 className="text-white text-[56px] font-nineties text-center mb-8">Use Cases</h2>
 
       <div className="max-w-8xl mx-auto grid grid-cols-2 gap-4 ">
         <div className="relative rounded-[48px] aspect-[657/537] bg-[url('/images/use-case/bg1.png')] bg-cover bg-center  overflow-hidden">

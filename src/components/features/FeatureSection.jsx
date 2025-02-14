@@ -25,9 +25,7 @@ const FeatureSection = () => {
   return (
     <section className="py-[100px] px-8">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-white text-[56px] font-serif font-nineties text-center mb-8">
-          Our Features
-        </h2>
+        <h2 className="text-white text-[56px] font-nineties text-center mb-8">Our Features</h2>
       </div>
 
       {/* Main Container */}
