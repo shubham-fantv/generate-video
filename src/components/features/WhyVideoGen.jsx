@@ -3,21 +3,22 @@ import React from "react";
 const VideoGenFeatures = () => {
   const features = [
     {
-      percentage: "100%",
-      title: "Lorem Ipsum",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      percentage: "10x",
+      title: "Fast & Efficient",
+      description: "Generate videos 10x faster with AI-powered tools- perfect for tight deadlines.",
       gradient: "from-yellow-200/20 to-transparent",
     },
     {
-      percentage: "100%",
-      title: "Lorem Ipsum",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      percentage: "50%",
+      title: "Versatile & Scalable ",
+      description:
+        "From social media reels to corporate presentations, create content for any purpose with ease.",
       gradient: "from-blue-200/20 to-transparent",
     },
     {
-      percentage: "100%",
-      title: "Lorem Ipsum",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      percentage: "70%",
+      title: "Affordable & Accessible ",
+      description: "Cut video production costs by up to 70% without compromising quality.",
       gradient: "from-green-200/20 via-purple-200/20 to-pink-200/20",
     },
   ];
@@ -27,10 +28,11 @@ const VideoGenFeatures = () => {
       <div className="max-full mx-auto rounded-2xl md:rounded-[48px] bg-[url('/images/why-bg.png')] bg-cover bg-center p-6 md:p-12 relative before:absolute before:inset-0 before:rounded-2xl md:before:rounded-[48px] before:bg-gradient-to-b before:from-black/80 before:to-transparent">
         <div className="relative text-center mb-8 md:mb-16 z-[999]">
           <h2 className="text-3xl md:text-4xl text-white font-nineties mb-3 md:mb-4">
-            Why VideoGen
+            Why VideoNation?
           </h2>
           <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto px-4 md:px-0">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            Simplifying video creation with cutting-edge AI technology for faster, smarter, and more
+            engaging content.
           </p>
         </div>
         {/* Cards container */}

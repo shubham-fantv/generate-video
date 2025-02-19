@@ -4,20 +4,23 @@ const features = [
   {
     title: "Text to Character Generation",
     description:
-      "Create unforgettable stories with characters who write themselves. Our revolutionary AI technology brings your imagination to life, helping you craft deeper narratives with personalities that feel genuinely human.",
+      "Turn your words into lifelike characters with ease. Just describe your vision, and watch AI bring it to life.",
     position: "left",
+    url: "https://assets.artistfirst.in/uploads/1739642803897-1739642802120-output.mp4",
   },
   {
     title: "Character Consistency",
     description:
-      "Create unforgettable stories with characters who write themselves. Our revolutionary AI technology brings your imagination to life, helping you craft deeper narratives with personalities that feel genuinely human.",
+      "Maintain the same character’s appearance across different videos, ensuring visual consistency for branding and storytelling.",
     position: "right",
+    url: "https://assets.artistfirst.in/uploads/1739990026501-replicate-prediction-hxf99amxg1rme0cn2bh8xe2vz8.mp4",
   },
   {
     title: "Create Music Videos",
     description:
-      "Create unforgettable stories with characters who write themselves. Our revolutionary AI technology brings your imagination to life, helping you craft deeper narratives with personalities that feel genuinely human.",
+      "Generate captivating music videos in seconds. Sync visuals with beats and lyrics to create engaging content effortlessly.",
     position: "left",
+    url: "https://assets.artistfirst.in/uploads/1739990091366-CB1-4.mp4",
   },
 ];
 
@@ -47,7 +50,7 @@ const FeatureSection = () => {
               <div className="w-full md:w-[40%] h-[240px] md:h-[320px] bg-black rounded-[24px] md:rounded-[48px] border-[6px] md:border-[12px] border-[#FFFFFF26]">
                 <video
                   className="w-full h-full rounded-[20px] md:rounded-[40px] object-cover"
-                  src={"/video/Crypto.mp4"}
+                  src={feature?.url}
                   poster={"/icons/charecter/image1.png"}
                   muted
                   playsInline
