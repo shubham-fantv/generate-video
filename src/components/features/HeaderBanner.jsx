@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import VideoCharacterTabs from "./Section2";
 import { Tabs, Tab, Button } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,17 +7,6 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import AutoFillInput from "../common/AutoFillInput";
 import { throttle } from "lodash";
-
-const videoList1 = [
-  { id: "1", url: "/video/new1.mp4", lyrics: "dgfask dgaks askdf askdfka" },
-  { id: "2", url: "/video/new2.mp4", lyrics: "dgfask dgaks askdf askdfka" },
-  { id: "3", url: "/video/new3.mp4", lyrics: "dgfask dgaks askdf askdfka" },
-  { id: "4", url: "/video/new4.mp4", lyrics: "dgfask dgaks askdf askdfka" },
-  { id: "5", url: "/video/new5.mp4", lyrics: "dgfask dgaks askdf askdfka" },
-  { id: "6", url: "/video/new6.mp4", lyrics: "dgfask dgaks askdf askdfka" },
-  { id: "7", url: "/video/new7.mp4", lyrics: "dgfask dgaks askdf askdfka" },
-  { id: "8", url: "/video/new8.mp4", lyrics: "dgfask dgaks askdf askdfka" },
-];
 
 const videoList = [
   // {
@@ -529,7 +518,7 @@ const charecter = [
 
 const HeaderBanner = () => {
   const [activeTab, setActiveTab] = useState("video");
-  const [videoCategory, setVideoCategory] = useState("1");
+  const [videoCategory, setVideoCategory] = useState("0");
 
   const [selectedCharacters, setSelectedCharacters] = useState("0");
 
@@ -539,7 +528,7 @@ const HeaderBanner = () => {
   const [slideDirection, setSlideDirection] = useState("right");
 
   const videoCategories = [
-    "All",
+    // "All",
     "Funny",
     "Music Videos",
     "Social Content",
@@ -575,44 +564,66 @@ const HeaderBanner = () => {
   const swiperRef = useRef(null);
   const charSwiperRef = useRef(null);
 
+  useEffect(() => {
+    setVideoCategory(0);
+  }, []);
+
   return (
-    <div>
-      <div className="relative p-6 md:p-6 text-white bg-[url('/images/bannerBg.png')] bg-cover bg-center">
-        {/* Responsive Navbar */}
-        <nav className="flex justify-between items-center px-4 md:px-8 py-4 bg-[#1E1E1E] backdrop-blur-md rounded-full">
-          <div className="text-xl font-bold">Logo</div>
+    <div className=" relative">
+      <nav className="flex relative justify-between items-center px-4 md:px-8 py-4 bg-[#1E1E1E] backdrop-blur-md rounded-full">
+        <div className="text-xl text-white font-bold">Logo</div>
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            <img src="/icons/menu.svg" alt="menu" className="w-6 h-6" />
-          </button>
+        {/* Mobile Menu Button */}
+        <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <img src="/icons/menu.svg" alt="menu" className="w-6 h-6" />
+        </button>
 
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-[#1E1E1E] p-4 rounded-lg md:hidden">
-              <ul className="space-y-4">
-                <li className="cursor-pointer font-nineties">Platform</li>
-                <li className="cursor-pointer font-nineties">Solutions</li>
-                <li className="cursor-pointer font-nineties">Resources</li>
-                <li className="cursor-pointer font-nineties">Pricing</li>
-              </ul>
-            </div>
-          )}
-
-          {/* Desktop Menu */}
-          <ul className="hidden md:flex space-x-6">
-            <li className="cursor-pointer font-nineties">Platform</li>
-            <li className="cursor-pointer font-nineties">Solutions</li>
-            <li className="cursor-pointer font-nineties">Resources</li>
-            <li className="cursor-pointer font-nineties">Pricing</li>
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex space-x-6">
+          <li className="cursor-pointer text-white font-nineties">Platform</li>
+          <li className="cursor-pointer text-white font-nineties">Solutions</li>
+          <li className="cursor-pointer text-white font-nineties">Resources</li>
+          <li className="cursor-pointer text-white font-nineties">Pricing</li>
+        </ul>
+        <button className="hidden md:block bg-white text-[#1E1E1E] font-bold px-4 py-2 rounded-full">
+          Launch App
+        </button>
+      </nav>
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div
+          style={{ zIndex: 1 }}
+          className="absolute z-1 left-0 right-0  bg-[#1E1E1E] p-4 rounded-lg md:hidden"
+        >
+          <ul className="space-y-4">
+            <li className="cursor-pointer text-white font-nineties">Platform</li>
+            <li className="cursor-pointer text-white font-nineties">Solutions</li>
+            <li className="cursor-pointer text-white font-nineties">Resources</li>
+            <li className="cursor-pointer text-white font-nineties">Pricing</li>
           </ul>
-          <button className="hidden md:block bg-white text-[#1E1E1E] font-bold px-4 py-2 rounded-full">
-            Launch App
-          </button>
-        </nav>
+        </div>
+      )}
+
+      <div className="relative p-6 h-screen md:p-6 text-white">
+        {/* Background Video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="https://redernet-image-data.s3.us-east-1.amazonaws.com/prod/assets/landing_page/new_website/videos/hero_vid_desktop_1080_v2.mp4"
+          autoPlay
+          poster="/images/bannerBg.jpeg"
+          loop
+          muted
+          playsInline
+        />
+
+        {/* Left Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent"></div>
+
+        {/* Additional Dark Overlay for Readability */}
+        <div className="absolute inset-0 bg-black/10"></div>
 
         {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row items-center justify-between pb-[50px] md:pb-[150px] px-4 md:px-8">
+        <div className="flex absolute md:inset-y-0  bottom-[10px] left-0 right-0 m-auto flex-col lg:flex-row items-center justify-between pb-[50px] md:pb-[150px] px-4 md:px-8">
           {/* Left Text Content */}
           <div className="w-full lg:w-[50%] text-left mb-8 lg:mb-0">
             <h1 className="text-3xl md:text-[64px] leading-tight md:leading-[64px] text-[#FFF] font-nineties">
@@ -634,23 +645,17 @@ const HeaderBanner = () => {
               Launch App
             </button>
           </div>
-
-          {/* Right Side TV Image */}
-          <div className="w-full lg:w-[50%]">
-            <img src="/images/tv.png" alt="Retro TV" className="w-full md:w-[672px] rounded-lg" />
-          </div>
         </div>
+      </div>
 
-        {/* Concept Section */}
-        <div className="text-white p-4 md:p-8">
-          <h1 className="text-center text-[#FFF] text-3xl md:text-[56px] font-nineties font-bold">
-            Bring Your Imagination to Life – Instantly!
-          </h1>
-          <p className="m-auto flex text-[#D2D2D2] text-center mt-6 text-base md:text-lg max-w-2xl">
-            Generate stunning videos with prompts and craft unique characters using AI or our
-            elements library. Effortless, instant, and limitless!
-          </p>
-        </div>
+      <div className="text-white p-4 mt-[68px] md:p-8">
+        <h1 className="text-center text-[#FFF] text-3xl md:text-[56px] font-nineties font-bold">
+          Bring Your Imagination to Life – Instantly!
+        </h1>
+        <p className="m-auto flex text-[#D2D2D2] text-center mt-6 text-base md:text-lg max-w-2xl">
+          Generate stunning videos with prompts and craft unique characters using AI or our elements
+          library. Effortless, instant, and limitless!
+        </p>
       </div>
 
       {/* Tabs Section */}
