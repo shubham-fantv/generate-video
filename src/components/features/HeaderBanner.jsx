@@ -614,6 +614,7 @@ const HeaderBanner = () => {
           loop
           muted
           playsInline
+          preload="auto"
         />
 
         {/* Left Gradient Overlay */}
