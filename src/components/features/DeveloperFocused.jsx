@@ -92,7 +92,7 @@ export default Home`,
       <h1 className="flex pt-12 md:pt-[100px] font-nineties text-3xl md:text-[56px] text-[#FFF] justify-center text-center">
         Developer Focused
       </h1>
-      <div className="flex flex-col items-center justify-center p-4 md:p-8">
+      <div className="flex flex-col items-center justify-center py-4  md:p-8">
         <div className="flex flex-wrap md:flex-nowrap items-center justify-center gap-2 md:gap-4">
           {tabs1.map((tab, index) => (
             <React.Fragment key={tab}>

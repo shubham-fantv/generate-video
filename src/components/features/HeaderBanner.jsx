@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import VideoCharacterTabs from "./Section2";
-import { Tabs, Tab, Button } from "@mui/material";
+import { Tabs, Tab, Button, useMediaQuery } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -254,12 +254,12 @@ const videoList = [
     items: [
       {
         id: "1",
-        url: "https://assets.artistfirst.in/uploads/1739988073763-replicate-prediction-w7n0kmbf3hrma0cn152s9fmvk8.mp4",
+        url: "https://assets.artistfirst.in/uploads/1739988040199-replicate-prediction-1evbxvbh5drmc0cn0kna88yksg.mp4",
         lyrics: "Horses running in a field. make it look vintage",
       },
       {
         id: "2",
-        url: "/icons/charecter/image1.png",
+        url: "https://assets.artistfirst.in/uploads/1739988073763-replicate-prediction-w7n0kmbf3hrma0cn152s9fmvk8.mp4",
         lyrics: "Pasta sizzling in a pan with steam rising deliciously.",
       },
       {
@@ -527,6 +527,8 @@ const HeaderBanner = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [slideDirection, setSlideDirection] = useState("right");
 
+  const isMobile = useMediaQuery("(max-width:768px)");
+
   const videoCategories = [
     // "All",
     "Funny",
@@ -570,8 +572,13 @@ const HeaderBanner = () => {
 
   return (
     <div className=" relative">
-      <nav className="flex relative justify-between items-center px-4 md:px-8 py-4 bg-[#1E1E1E] backdrop-blur-md rounded-full">
-        <div className="text-xl text-white font-bold">Logo</div>
+      <nav
+        style={{ zIndex: 1 }}
+        className="flex w-full absolute top-1 z-1 justify-between items-center px-4 md:px-8 py-4  rounded-full"
+      >
+        <div className="text-xl text-white font-bold">
+          <img src="/icons/logo.svg" alt="menu" className="w-[140px]" />
+        </div>
 
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -579,12 +586,12 @@ const HeaderBanner = () => {
         </button>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6">
+        {/* <ul className="hidden md:flex space-x-6">
           <li className="cursor-pointer text-white font-nineties">Platform</li>
           <li className="cursor-pointer text-white font-nineties">Solutions</li>
           <li className="cursor-pointer text-white font-nineties">Resources</li>
           <li className="cursor-pointer text-white font-nineties">Pricing</li>
-        </ul>
+        </ul> */}
         <button className="hidden md:block bg-white text-[#1E1E1E] font-bold px-4 py-2 rounded-full">
           Launch App
         </button>
@@ -593,7 +600,7 @@ const HeaderBanner = () => {
       {isMobileMenuOpen && (
         <div
           style={{ zIndex: 1 }}
-          className="absolute z-1 left-0 right-0  bg-[#1E1E1E] p-4 rounded-lg md:hidden"
+          className="absolute z-1  left-0 right-0  bg-[#1E1E1E] p-4 rounded-lg md:hidden"
         >
           <ul className="space-y-4">
             <li className="cursor-pointer text-white font-nineties">Platform</li>
@@ -608,7 +615,7 @@ const HeaderBanner = () => {
         {/* Background Video */}
         <video
           className="absolute inset-0 w-full h-full object-cover"
-          src="https://redernet-image-data.s3.us-east-1.amazonaws.com/prod/assets/landing_page/new_website/videos/hero_vid_desktop_1080_v2.mp4"
+          src="/video/banner-video.mp4"
           autoPlay
           poster="/images/bannerBg.jpeg"
           loop
@@ -616,24 +623,27 @@ const HeaderBanner = () => {
           playsInline
           preload="auto"
         />
-
         {/* Left Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent"></div>
+        {!isMobile && (
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent"></div>
+        )}
+        {isMobile && (
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent"></div>
 
         {/* Additional Dark Overlay for Readability */}
-        <div className="absolute inset-0 bg-black/10"></div>
-
         {/* Hero Section */}
         <div className="flex absolute md:inset-y-0  bottom-[10px] left-0 right-0 m-auto flex-col lg:flex-row items-center justify-between pb-[50px] md:pb-[150px] px-4 md:px-8">
           {/* Left Text Content */}
           <div className="w-full lg:w-[50%] text-left mb-8 lg:mb-0">
             <h1 className="text-3xl md:text-[64px] leading-tight md:leading-[64px] text-[#FFF] font-nineties">
-              Transform your stories with living, Breathing AI Characters
+              Bring Your Stories to Life with AI Characters
             </h1>
             <p className="mt-4 md:mt-6 text-sm md:text-base text-[#FFF]">
-              Create unforgettable stories with characters who write themselves. Our revolutionary
-              AI technology brings your imagination to life, helping you craft deeper narratives
-              with personalities that feel genuinely human.
+              Craft unforgettable narratives with characters that think, feel, and evolve- powered
+              <br /> by advanced AI that makes your imagination real.
             </p>
             <button
               style={{
@@ -694,23 +704,25 @@ const HeaderBanner = () => {
       <div className="px-4 md:px-8">
         {activeTab === "video" && (
           <div className="mt-6">
-            {/* Video Categories */}
-            <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 text-sm md:text-base">
-              {videoCategories.map((category, i) => (
-                <Button
-                  key={category}
-                  variant={videoCategory === i ? "contained" : "none"}
-                  onClick={() => setVideoCategory(i)}
-                  className="capitalize w-[110px] md:w-[150px] text-sm md:text-base"
-                  style={{
-                    background: videoCategory === i ? "#FFF" : "#FFFFFF0D",
-                    color: videoCategory === i ? "#1E1E1E" : "#D2D2D2",
-                    borderRadius: "12px",
-                  }}
-                >
-                  {category}
-                </Button>
-              ))}
+            <div className="overflow-x-auto md:overflow-visible w-full hidden-scroll-bar">
+              <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-3 mb-8 text-sm md:text-base">
+                {videoCategories.map((category, i) => (
+                  <Button
+                    key={category}
+                    variant={videoCategory === i ? "contained" : "none"}
+                    onClick={() => setVideoCategory(i)}
+                    className="w-[110px] md:w-[150px] text-sm md:text-base flex-shrink-0"
+                    style={{
+                      background: videoCategory === i ? "#FFF" : "#FFFFFF0D",
+                      color: videoCategory === i ? "#1E1E1E" : "#D2D2D2",
+                      borderRadius: "12px",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
             </div>
 
             {/* Video Swiper */}
@@ -780,7 +792,7 @@ const HeaderBanner = () => {
         {activeTab === "character" && (
           <div className="mt-8">
             {/* Character Selection */}
-            <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
+            {/* <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
               {charecter.map((item) => (
                 <div
                   key={item.id}
@@ -797,6 +809,30 @@ const HeaderBanner = () => {
                   <img src={item?.url} className=" w-[100px] h-[100px] object-cover rounded-full" />
                 </div>
               ))}
+            </div> */}
+            <div className="overflow-x-auto md:overflow-visible w-full scroll-container hidden-scroll-bar">
+              <div className="flex flex-nowrap md:flex-wrap gap-2 md:gap-4 justify-start md:justify-center">
+                {charecter.map((item) => (
+                  <div
+                    key={item.id}
+                    style={{
+                      boxShadow:
+                        item.id === selectedCharacters ? "0px 0px 11px 0px #FFA0FF" : undefined,
+                      border:
+                        item.id === selectedCharacters
+                          ? "3px solid #FFA0FF"
+                          : "3px solid transparent",
+                    }}
+                    className="cursor-pointer rounded-full w-[100px] h-[100px] md:w-auto md:h-auto flex-shrink-0"
+                    onClick={() => setSelectedCharacters(item?.id)}
+                  >
+                    <img
+                      src={item?.url}
+                      className="w-[100px] h-[100px] object-cover rounded-full"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Character Swiper */}

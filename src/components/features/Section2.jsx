@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Tabs, Tab, Button } from "@mui/material";
+import { Tabs, Tab, Button, useMediaQuery } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,6 +9,7 @@ const VideoCharacterTabs = () => {
   const [activeTab, setActiveTab] = useState("video");
   const [videoCategory, setVideoCategory] = useState("all");
 
+  const isMobile = useMediaQuery("(max-width:768px)");
   const videoCategories = [
     "All",
     "Funny",

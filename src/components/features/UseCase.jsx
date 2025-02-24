@@ -50,7 +50,7 @@ const UseCasesGrid = () => {
       <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="relative rounded-[24px] md:rounded-[48px] aspect-[657/537] bg-[url('/images/use-case/bg1.png')] bg-cover bg-center overflow-hidden">
           <h1 className="text-white text-xl md:text-2xl pt-10 md:pt-20 flex m-auto justify-center shadow-[0px 5px 14px 0px #000000BF]">
-            AI-Enhanced Podcast Creation
+            AI-Generated Music Videos
           </h1>
 
           <div className="w-full max-w-4xl mx-auto mt-8 md:mt-16 py-5 relative">
@@ -152,7 +152,7 @@ const UseCasesGrid = () => {
         <div className="relative rounded-xl md:rounded-2xl overflow-hidden aspect-[670/350] bg-[url('/images/use-case/bg3.png')] bg-cover bg-center">
           <div className="absolute inset-0">
             <h1 className="text-white text-xl md:text-2xl pt-6 md:pt-12 flex m-auto justify-center">
-              AI-Generated Music Videos
+              AI-Enhanced Podcast Creation
             </h1>
             <div className="flex">
               <div className="flex items-center w-1/3">
