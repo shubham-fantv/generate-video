@@ -755,6 +755,7 @@ const HeaderBanner = () => {
                       className="rounded-[24px] md:rounded-[48px] w-full h-[250px] md:h-[400px] object-cover"
                       muted
                       loop
+                      playsInline
                       onMouseEnter={(e) => e.target.play()}
                       onMouseLeave={(e) => e.target.pause()}
                     />

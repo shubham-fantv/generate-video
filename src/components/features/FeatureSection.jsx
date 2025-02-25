@@ -51,7 +51,7 @@ const FeatureSection = () => {
                 <video
                   className="w-full h-full rounded-[20px] md:rounded-[40px] object-cover"
                   src={feature?.url}
-                  poster={"/icons/charecter/image1.png"}
+                  // poster={"/icons/charecter/image1.png"}
                   muted
                   playsInline
                   onMouseEnter={(e) => e.target.play()}

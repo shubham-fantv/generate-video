@@ -11,10 +11,10 @@ import { Navigation } from "swiper/modules";
 import RotatingShowcase from "../common/RotatingImage";
 
 const videos = [
-  { poster: "/icons/charecter/image1.png", video: "/video/new1.mp4" },
-  { poster: "/icons/charecter/image1.png", video: "/video/new2.mp4" },
-  { poster: "/icons/charecter/image1.png", video: "/video/new3.mp4" },
-  { poster: "/icons/charecter/image1.png", video: "/video/new4.mp4" },
+  { poster: "/images/poster/new1.png", video: "/video/new1.mp4" },
+  { poster: "/images/poster/new2.png", video: "/video/new2.mp4" },
+  { poster: "/images/poster/new3.png", video: "/video/new3.mp4" },
+  { poster: "/images/poster/new4.png", video: "/video/new4.mp4" },
 ];
 
 const avatars = [
