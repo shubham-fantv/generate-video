@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import AutoFillInput from "../common/AutoFillInput";
 import { throttle } from "lodash";
+import ReactPlayer from "react-player";
 
 const videoList = [
   // {
@@ -617,7 +618,7 @@ const HeaderBanner = () => {
           className="absolute inset-0 w-full h-full object-cover"
           src="/video/banner-video.mp4"
           autoPlay
-          poster="/images/bannerBg.jpeg"
+          poster="/images/poster/banner-poster.png"
           loop
           muted
           playsInline
@@ -740,6 +741,16 @@ const HeaderBanner = () => {
                 prevEl: ".custom-swiper-button-prev",
               }}
             >
+              {/* <video
+                src={video.url}
+                className="rounded-[24px] md:rounded-[48px] w-full h-[250px] md:h-[400px] object-cover"
+                muted
+                loop
+                playsInline
+                onMouseEnter={(e) => e.target.play()}
+                onMouseLeave={(e) => e.target.pause()}
+              /> */}
+
               {videoList[videoCategory]?.items?.map((video, index) => (
                 <SwiperSlide
                   key={index}
@@ -750,15 +761,27 @@ const HeaderBanner = () => {
                     onMouseEnter={() => handleMouseEnter(index)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <video
-                      src={video.url}
-                      className="rounded-[24px] md:rounded-[48px] w-full h-[250px] md:h-[400px] object-cover"
-                      muted
-                      loop
-                      playsInline
-                      onMouseEnter={(e) => e.target.play()}
-                      onMouseLeave={(e) => e.target.pause()}
-                    />
+                    {/* ReactPlayer instead of video */}
+                    <div className="rounded-[24px] md:rounded-[48px] w-full h-[293px] md:h-[400px] overflow-hidden">
+                      <ReactPlayer
+                        className="react-player"
+                        url={video.url}
+                        playing={hoveredIndex === index}
+                        muted
+                        loop
+                        width="100%"
+                        height="100%"
+                        playsinline
+                        config={{
+                          file: {
+                            attributes: {
+                              preload: "metadata",
+                            },
+                          },
+                        }}
+                      />
+                    </div>
+
                     {hoveredIndex !== index && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 text-white rounded-[24px] md:rounded-[48px] pointer-events-none">
                         <img src="/icons/play-circle.png" className="w-12 md:w-auto" />

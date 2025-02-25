@@ -7,6 +7,7 @@ const features = [
       "Turn your words into lifelike characters with ease. Just describe your vision, and watch AI bring it to life.",
     position: "left",
     url: "https://assets.artistfirst.in/uploads/1739642803897-1739642802120-output.mp4",
+    thumb: "/images/poster/feature/feature1.png",
   },
   {
     title: "Character Consistency",
@@ -14,6 +15,7 @@ const features = [
       "Maintain the same character’s appearance across different videos, ensuring visual consistency for branding and storytelling.",
     position: "right",
     url: "https://assets.artistfirst.in/uploads/1739990026501-replicate-prediction-hxf99amxg1rme0cn2bh8xe2vz8.mp4",
+    thumb: "/images/poster/feature/feature2.png",
   },
   {
     title: "Create Music Videos",
@@ -21,6 +23,7 @@ const features = [
       "Generate captivating music videos in seconds. Sync visuals with beats and lyrics to create engaging content effortlessly.",
     position: "left",
     url: "https://assets.artistfirst.in/uploads/1739990091366-CB1-4.mp4",
+    thumb: "/images/poster/feature/feature3.png",
   },
 ];
 
@@ -51,7 +54,7 @@ const FeatureSection = () => {
                 <video
                   className="w-full h-full rounded-[20px] md:rounded-[40px] object-cover"
                   src={feature?.url}
-                  // poster={"/icons/charecter/image1.png"}
+                  poster={feature?.thumb}
                   muted
                   playsInline
                   onMouseEnter={(e) => e.target.play()}
