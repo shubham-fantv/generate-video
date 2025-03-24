@@ -634,7 +634,7 @@ const HeaderBanner = () => {
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent"></div>
 
-        <div className="flex absolute md:inset-y-0  bottom-[10px] left-0 right-0 m-auto flex-col lg:flex-row items-center justify-between pb-[50px] md:pb-[0px] px-4 md:px-8">
+        <div className="flex absolute md:inset-y-10  bottom-[0px] left-0 right-0 m-auto flex-col lg:flex-row items-end justify-between pb-[50px] md:pb-[0px] px-4 md:px-8">
           {/* Left Text Content */}
           <div className="w-full lg:w-[50%] text-left mb-8 lg:mb-0">
             <h1 className="text-3xl md:text-[64px] leading-tight md:leading-[64px] text-[#FFF] font-nineties">
