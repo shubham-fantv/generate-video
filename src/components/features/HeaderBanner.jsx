@@ -634,9 +634,7 @@ const HeaderBanner = () => {
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent"></div>
 
-        {/* Additional Dark Overlay for Readability */}
-        {/* Hero Section */}
-        <div className="flex absolute md:inset-y-0  bottom-[10px] left-0 right-0 m-auto flex-col lg:flex-row items-center justify-between pb-[50px] md:pb-[150px] px-4 md:px-8">
+        <div className="flex absolute md:inset-y-0  bottom-[10px] left-0 right-0 m-auto flex-col lg:flex-row items-center justify-between pb-[50px] md:pb-[0px] px-4 md:px-8">
           {/* Left Text Content */}
           <div className="w-full lg:w-[50%] text-left mb-8 lg:mb-0">
             <h1 className="text-3xl md:text-[64px] leading-tight md:leading-[64px] text-[#FFF] font-nineties">
@@ -652,7 +650,7 @@ const HeaderBanner = () => {
                 border: "1px solid #FFFFFF",
                 boxShadow: "0px 1px 6px 0px #00000059",
               }}
-              className="text-sm font-bold mt-4 md:mt-6 px-4 md:px-6 py-2 md:py-3 bg-black text-white rounded-xl w-full md:w-auto"
+              className=" font-bold mt-4 md:mt-6 px-4 md:px-6 py-2 md:py-3 bg-black text-white  w-full md:w-auto hidden md:block  px-4 py-2 rounded-full"
             >
               Launch App
             </button>
