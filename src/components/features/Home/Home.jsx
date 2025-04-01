@@ -15,6 +15,12 @@ const Home = () => {
       <UseCasesGrid />
       <DeveloperFocused />
       <VideoGenFeatures />
+
+      <div className="h-20 flex text-white bg-black justify-center align-center w-full">
+        <a className="pt-6 justify-center align-center" href="/privacy">
+          Privacy and Policy
+        </a>
+      </div>
     </div>
   );
 };
